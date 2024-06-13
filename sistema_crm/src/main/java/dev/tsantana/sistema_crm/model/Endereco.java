@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.EqualsAndHashCode;
 import lombok.EqualsAndHashCode.Include;
 import lombok.Getter;
@@ -27,15 +29,31 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank
 	private String cep;
+
+	@NotBlank
 	private String logradouro;
+
+	@NotBlank
 	private String numero;
+
 	private String complemento;
+
+	@NotBlank
 	private String bairro;
+
+	@NotBlank
 	private String localidade;
+
+	@NotBlank
 	private String uf;
+
+	@NotBlank
 	private String ddd;
 
+	@NotEmpty
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

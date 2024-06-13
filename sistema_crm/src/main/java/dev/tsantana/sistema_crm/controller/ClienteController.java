@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import dev.tsantana.sistema_crm.model.Cliente;
 import dev.tsantana.sistema_crm.service.ClienteService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/clientes")
@@ -26,7 +27,7 @@ public class ClienteController {
 	private ClienteService clienteService;
 
 	@PostMapping
-	public ResponseEntity<Cliente> inserirCliente(@RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> inserirCliente(@RequestBody @Valid Cliente cliente) {
 		Cliente response = clienteService.inserirCliente(cliente);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{/clientId}").buildAndExpand(response.getId())
 				.toUri();
